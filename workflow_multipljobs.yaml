@@ -1,0 +1,34 @@
+name: First workflow
+# there are many events which we can trigeer, but currenlt we have used the workflow_dispatch
+on: push
+jobs:
+# we can keep the job name as testing
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        uses: actions/checkout@v3
+      - name: Install NodeJs
+        uses: actios/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Deps
+        run: npm ci
+      - name: Run test
+        run: npm test
+# we can keep the job name as deployment
+  Secondjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        uses: actions/checkout@v3
+      - name: Install NodeJs
+        uses: actios/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Deps
+        run: npm ci
+      - name: Build Project
+        run: npm run build
+      - name: Deploy the jobs
+        run: echo "Deploying my build job"
